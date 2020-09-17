@@ -1,60 +1,18 @@
-# House Price Prediction using Machine Learning
+# Ames House Price Prediction - Kaggle Competition
 
 ![alt text](Figures/0_Main_House.jpg)
 
-## INTRODUCTION
-
-This project was conducted to predict house prices in the city of Ames, Iowa using machine learning regression methods. The dataset was collected from a Kaggle competition (i.e., House Prices: Advanced Regression Techniques), and 80 features of the dataset were carefully reviewed and processed for more accurate house price prediction. This project conducted an in-depth EDA, missing data imputation, feature engineering, and model building. Five different machine learning regression models, including Lasso, ElasticNet, Random Forest, Gradient Boosting, and XGBoost were trained and applied to predict house prices. In addition, the trained models were fed into develop a stacked model to maximize the accuracy of the prediction.
+## Overview
+This project was conducted to predict house prices in the city of Ames, Iowa using machine learning regression methods. The dataset was collected from a [Kaggle competition, House Prices: Advanced Regression Techniques](https://www.kaggle.com/c/house-prices-advanced-regression-techniques). I conducted an in-depth EDA, missing data imputation, feature engineering, and model building. Five different machine learning regression models, including Lasso, ElasticNet, Random Forest, Gradient Boosting, and XGBoost were trained and applied to predict house prices. In addition, the trained models were fed into develop a stacked model to maximize the accuracy of the prediction. With the results, I was able to identify the most important features that increase home value and recommend investment strategy for homebuyers.
 
 ## DATA EXPLORATION
-
 The project began by exploring the features of dataset, which includes the presence of certain amenities, the number of rooms and garages, the size of all spaces, house conditions, ages, etc. Described below are some descriptive examples of the conducted data exploration. 
-
-### Distribution of target variable
-First, the distribution of target variable,  _‘SalePrice’_, was examined. As illustrated below, the majority of house prices ranges between $100,000 and $200,000 with a long tail stretching up to about $800,000. However, the distribution is right-skewed, which violates the key assumption of linear models. To normalize the distribution, Box-Cox transformation was applied and the result is shown in Figure 1-(b). 
-
-![alt text](Figures/1_skewed_SalePrice_distribution.jpg)           |   ![alt text](Figures/3_BoxCox_SalePrice.jpg) 
-:-----------------------------------------------------------------:|:------------------------------------------------------------------:
-(a) Original SalePrice distribution                                |(b) Distribution after BoxCox transformation
-
-### Numerical Features Correlation
-The types of features were reviewed and classified into numeric, categorical, and nominal features.There are 38 numeric features in the training dataset. To help visual understanding of the relationship between the numerical features and the target variable, a correlation matrix was created. It was found that top 9 features, including  OverallQual, GrLivArea, GarageCars, GarageArea, TotalBsmtSF, 1stFlrSF, FullBath, TotRmsAbvGrd, and YearBuilt, are strongly correlated with SalePrice.
-
-![alt text](Figures/4_correlation.png)  
-                            
+                          
 ## DATA PREPROCESSING
-
 In this section, the following two tasks were conducted.
 
 1.	Cleaning outliers
 2.	Imputing missing data 
-
-### Cleaning Outliers 
-
-To remedy outliers, I decided to manually clean certain extreme outliers for a better fit. A scatter plots showing the relationship between SalePrice and GrLivArea was created and examined. It is important to note that GrLivArea has the highest correlation with SalePrice among the continuous numeric features. The two outliers were safely removed from the dataset
-
-![alt text](Figures/5_Outlier.png)
-
-### Imputing Missing Data
-
-Missing values in the dataset were examined. Below illustrates the frequency of missing values in the train and test dataset.
-
-![alt text](Figures/7_Missing_data.jpg)
-
-As a first step of missing data imputation, the description of each feature was carefully reviewed. Then, three numeric features, including MSSubClass, YrSold, and MoSold, were converted into categorical variable. Some features include many null values (i.e., ‘NA’). The definition of ‘NA’ value in each feature was reviewed and replaced as shown below.
-
-![alt text](Figures/8_missing_imputation.jpg)
-
-In addition, the following data imputations were performed.  
-
-1.	Missing values in some numeric features were imputed with their mode. These features are Functional, Electrical, KitchenQual,   Exterior1st, Exterior2nd, SaleType, MSZoning, and LotFrontage.
-2.	Missing values in GarageType, GarageFinish, GarageQual, and GarageCond were filled with zero.
-3.	Missing values in BsmtFinType2, BsmtExposure, BsmtFinType1, BsmtCond, and BsmtQual were imputed with No Basement. 
-4.	Missing values in BsmtFinSF1, BsmtFinSF2, BsmtUnfSF, TotalBsmtSF, BsmtFullBath, and BsmtHalfBath were filled with zero. 
-5.	Missing values in GarageYrBlt were imputed with No Garage.
-6.	Missing values in MasVnrType were imputed with None.
-7.	Missing values in MasVnrArea were filled with zero.
-8.	The Utilities feature was dropped because it won’t help for prediction
 
 ## FEATURE ENGINEERING
 
